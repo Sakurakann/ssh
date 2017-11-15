@@ -8,8 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Created with IntelliJ IDEA. Project: ssh. Package: com.sknn.ssh.entity. User: Administrator.
- * Date: 2017-11-14 14:51. Author: Haiyangp.
+ * Created with IntelliJ IDEA.
+ * Project: ssh.
+ * Package: com.sknn.ssh.entity.
+ * User: Administrator.
+ * Date: 2017-11-14 14:51.
+ * Author: Haiyangp.
  */
 @Entity
 @Table(name = "S_USER", schema = "SCOTT", catalog = "")

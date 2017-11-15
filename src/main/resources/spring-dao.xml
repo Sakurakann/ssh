@@ -2,11 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:tx="http://www.springframework.org/schema/tx"
   xsi:schemaLocation="http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/tx
+   http://www.springframework.org/schema/tx/spring-tx.xsd
   http://www.springframework.org/schema/context
   http://www.springframework.org/schema/context/spring-context.xsd">
 
+  <context:annotation-config/>
   <context:component-scan base-package="com.sknn.ssh.dao.impl"/>
 
   <context:property-placeholder location="classpath:db.properties"/>
@@ -27,16 +31,32 @@
         <prop key="hibernate.dialect">org.hibernate.dialect.Oracle9iDialect</prop>
         <prop key="hibernate.show_sql">true</prop>
         <prop key="hibernate.format_sql">true</prop>
+        <prop key="hibernate.connection.autocommit">true</prop>
       </props>
     </property>
   </bean>
+
+  <bean id="persistenceExceptionTranslationPostProcessor"
+  class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
   <bean id="transactionManager"
     class="org.springframework.orm.hibernate4.HibernateTransactionManager">
     <property name="sessionFactory" ref="sessionFactory" />
   </bean>
+  <tx:annotation-driven/>
 
-  <bean id="persistenceExceptionTranslationPostProcessor"
-    class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+  <tx:advice id="txAdvice" transaction-manager="transactionManager">
+    <tx:attributes>
+      <tx:method name="do*" propagation="REQUIRED" rollback-for="Exception" />
+      <tx:method name="add*" propagation="REQUIRED" rollback-for="Exception" />
+      <tx:method name="save*" propagation="REQUIRED" rollback-for="Exception"/>
+      <tx:method name="del*" propagation="REQUIRED" rollback-for="Exception" />
+      <tx:method name="mod*" propagation="REQUIRED" rollback-for="Exception" />
+      <tx:method name="ins*" propagation="REQUIRED" rollback-for="Exception" />
+      <tx:method name="upd*" propagation="REQUIRED" rollback-for="Exception" />
+      <tx:method name="invoke" propagation="REQUIRES_NEW" rollback-for="Exception" />
+      <tx:method name="*" propagation="SUPPORTS" read-only="true" />
+    </tx:attributes>
+  </tx:advice>
 
 </beans>

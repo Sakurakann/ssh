@@ -98,6 +98,17 @@
       <artifactId>struts2-core</artifactId>
       <version>${struts.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.struts</groupId>
+      <artifactId>struts2-convention-plugin</artifactId>
+      <version>${struts.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.struts</groupId>
+      <artifactId>struts2-spring-plugin</artifactId>
+      <version>${struts.version}</version>
+    </dependency>
+
 
     <!-- hibernate -->
     <dependency>
