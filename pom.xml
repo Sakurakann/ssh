@@ -237,7 +237,7 @@
           <stopKey>CTRL+c</stopKey>
           <stopPort>9966</stopPort>
           <reload>manual</reload>
-          <dumpOnStart>true</dumpOnStart>
+          <dumpOnStart>false</dumpOnStart>
           <webApp>
             <contextPath>/${project.artifactId}</contextPath>
             <!--

@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.sknn.ssh.entity.SUserEntity;
 import com.sknn.ssh.service.UserService;
 import javax.annotation.Resource;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 @Component("userAction")
 public class UserAction extends ActionSupport {
 
+  private Logger logger = Logger.getLogger("sknn");
   private static final long serialVersionUID = -6334420144490128952L;
 
   @Resource
@@ -28,9 +30,14 @@ public class UserAction extends ActionSupport {
     user.setLoginname("1");
     user.setLoginpass("1");
     user.setEmail("1");
+    try {
+      int a = 1/0;
+    } catch (Exception e) {
+      logger.error(e.getMessage());
+    }
 
     System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-    userService.addUser(user);
+    //userService.addUser(user);
     return "success";
   }
 }
