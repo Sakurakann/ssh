@@ -5,8 +5,6 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ExceptionMapping;
 import org.apache.struts2.convention.annotation.ExceptionMappings;
-import org.apache.struts2.convention.annotation.InterceptorRef;
-import org.apache.struts2.convention.annotation.InterceptorRefs;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -26,19 +24,19 @@ import org.apache.struts2.convention.annotation.Results;
 @Namespace("/common")
 @Results({
     @Result(name = "success", location = "/index.jsp"),
-    @Result(name = "error", location = "/WEN-INF/jsp/error.jsp"),
-    @Result(name = "failure", location = "/login.jsp", type = "tiles")
+    @Result(name = "error", location = "/WEN-INF/jsp/error.jsp")
+    /*, @Result(name = "failure", location = "/login.jsp", type = "tiles")*/
 })
 @ExceptionMappings({
     @ExceptionMapping(
         exception = "java.lang.RuntimeException",
         result = "/WEN-INF/jsp/error.jsp")
 })
-@InterceptorRefs({
+/*@InterceptorRefs({
     // value = interceptorName or interceptorStackName
     @InterceptorRef(value = "first must be defaultStack!"),
     @InterceptorRef("timer")
-})
+})*/
 public class CommonAction extends ActionSupport {
 
   private static final long serialVersionUID = 5255176673964700928L;

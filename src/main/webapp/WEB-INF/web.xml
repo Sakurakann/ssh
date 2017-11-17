@@ -9,17 +9,25 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>
       classpath:spring-*.xml
-      classpath:struts.xml
     </param-value>
+  </context-param>
+  <context-param>
+    <param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
+    <param-value>/WEB-INF/jsp/layout.xml</param-value>
   </context-param>
 
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  <listener>
+    <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+  </listener>
 
   <filter>
     <filter-name>strutsPrepareAndExecuteFilter</filter-name>
-    <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    <filter-class>
+      org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+    </filter-class>
   </filter>
 
   <filter-mapping>
